@@ -11,7 +11,7 @@ var ComposeWindowGlobalConuter = {
   get: function(aKey) {
     return this._counter || 0;
   },
-  colsed: function(aKey) {
+  closed: function(aKey) {
     delete this._counter--;
   },
   clear: function() {
