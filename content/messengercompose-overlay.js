@@ -8,11 +8,9 @@
     init: function() {
       window.removeEventListener('load', this, false);
       window.addEventListener('unload', this, false);
-      window.addEventListener('select', this, true);
     },
     destroy: function() {
       window.removeEventListener('unload', this, false);
-      window.removeEventListener('select', this, true);
     },
 
     handleEvent: function(aEvent) {
