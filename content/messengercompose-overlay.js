@@ -8,6 +8,7 @@
   XPCOMUtils.defineLazyModuleGetter(this,
                                     "prefs",
                                     "resource://tb-bug766495-modules/lib/prefs.js");
+  var oldPurgeAsk, oldPurgeThresholdMB;
   var tbBug766495 = {
     init: function() {
       window.removeEventListener('DOMContentLoaded', this, false);
@@ -21,8 +22,14 @@
       document.documentElement.removeEventListener('compose-window-close', this, false);
     },
     activateComposeWindow: function() {
+      oldPurgeAsk = prefs.getPref("mail.purge.ask");
+      oldPurgeThresholdMB = prefs.getPref("mail.purge_threshhold_mb");
+      prefs.setPref("mail.purge.ask", true);
+      prefs.setPref("mail.purge_threshhold_mb", 1000 * 1000);
     },
     deactivateComposeWindow: function() {
+      prefs.setPref("mail.purge.ask", oldPurgeAsk);
+      prefs.setPref("mail.purge_threshhold_mb", oldPurgeThresholdMB);
     },
 
     handleEvent: function(aEvent) {
