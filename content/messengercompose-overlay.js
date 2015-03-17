@@ -23,6 +23,8 @@
       window.removeEventListener('unload', this, false);
       document.documentElement.removeEventListener('compose-window-init', this, false);
       document.documentElement.removeEventListener('compose-window-close', this, false);
+      ComposeWindowGlobalConuter.closed();
+      this.restorePref();
     },
     onActivated: function() {
       oldPurgeAsk = prefs.getPref("mail.purge.ask");
@@ -33,14 +35,16 @@
     },
     onDeactivated: function() {
       ComposeWindowGlobalConuter.closed();
-      dump("ComposeWindow: " + ComposeWindowGlobalConuter.get() + "\n")
+      this.restorePref();
+    },
+    isRemainingComposeWindow: function() {
+      return ComposeWindowGlobalConuter.get() > 0;
+    },
+    restorePref: function() {
       if (!this.isRemainingComposeWindow()) {
         prefs.setPref("mail.purge.ask", oldPurgeAsk);
         prefs.setPref("mail.purge_threshhold_mb", oldPurgeThresholdMB);
       }
-    },
-    isRemainingComposeWindow: function() {
-      return ComposeWindowGlobalConuter.get() > 0;
     },
     handleEvent: function(aEvent) {
       switch (aEvent.type) {
