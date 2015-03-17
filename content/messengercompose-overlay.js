@@ -9,8 +9,8 @@
                                     "prefs",
                                     "resource://tb-bug766495-modules/lib/prefs.js");
   XPCOMUtils.defineLazyModuleGetter(this,
-                                    "ComposeWindowInitCache",
-                                    "resource://tb-bug766495-modules/compose-window-init-cache.js");
+                                    "ComposeWindowGlobalConuter",
+                                    "resource://tb-bug766495-modules/compose-window-global-counter.jsm");
   var oldPurgeAsk, oldPurgeThresholdMB;
   var tbBug766495 = {
     init: function() {

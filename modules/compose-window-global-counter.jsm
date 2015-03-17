@@ -2,9 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var EXPORTED_SYMBOLS = ["ComposeWindowInitCache"];
+var EXPORTED_SYMBOLS = ["ComposeWindowGlobalConuter"];
 
-var ComposeWindowInitCache = {
+var ComposeWindowGlobalConuter = {
   set: function(aKey, aResult) {
     this._caches[aKey] = aResult;
   },
@@ -19,4 +19,4 @@ var ComposeWindowInitCache = {
   }
 };
 
-ComposeWindowInitCache.clear();
+ComposeWindowGlobalConuter.clear();
