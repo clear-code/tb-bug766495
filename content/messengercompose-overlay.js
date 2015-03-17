@@ -16,6 +16,10 @@
       document.documentElement.removeEventListener('compose-window-init', this, false);
       document.documentElement.removeEventListener('compose-window-close', this, false);
     },
+    activateComposeWindow: function() {
+    },
+    deactivateComposeWindow: function() {
+    },
 
     handleEvent: function(aEvent) {
       switch (aEvent.type) {
@@ -26,6 +30,14 @@
       case 'unload':
         this.destroy();
         return;
+
+      case 'compose-window-init':
+        this.activateComposeWindow();
+        break;
+
+      case 'compose-window-close':
+        this.deactivateComposeWindow();
+        break;
       }
     }
   };
