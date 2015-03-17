@@ -5,17 +5,17 @@
 var EXPORTED_SYMBOLS = ["ComposeWindowGlobalConuter"];
 
 var ComposeWindowGlobalConuter = {
-  set: function(aKey, aResult) {
-    this._caches[aKey] = aResult;
+  opened: function() {
+    this._counter++;
   },
   get: function(aKey) {
-    return this._caches[aKey] || null;
+    return this._counter || 0;
   },
-  delete: function(aKey) {
-    delete this._caches[aKey];
+  colsed: function(aKey) {
+    delete this._counter--;
   },
   clear: function() {
-    this._caches = {};
+    this._counter = 0;
   }
 };
 
