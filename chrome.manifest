@@ -3,5 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 content	tb-bug766495	content/
+resource	tb-bug766495-modules	modules/
 
 overlay	chrome://messenger/content/messengercompose/messengercompose.xul	chrome://tb-bug766495/content/messengercompose-overlay.xul
