@@ -4,4 +4,4 @@
 
 content	tb-bug766495	content/
 
-overlay	chrome://messenger/content/messenger.xul	chrome://tb-bug766495/content/messenger-overlay.xul
+overlay	chrome://messenger/content/messengercompse/messengercompose.xul	chrome://tb-bug766495/content/messengercompose-overlay.xul
