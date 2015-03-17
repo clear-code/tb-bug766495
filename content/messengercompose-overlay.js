@@ -6,8 +6,8 @@
   const Cu = Components.utils;
   Cu.import("resource://gre/modules/XPCOMUtils.jsm");
   XPCOMUtils.defineLazyModuleGetter(this,
-                                  "prefs",
-                                  "resource://tb-bug766495-modules/lib/prefs.js");
+                                    "prefs",
+                                    "resource://tb-bug766495-modules/lib/prefs.js");
   var tbBug766495 = {
     init: function() {
       window.removeEventListener('DOMContentLoaded', this, false);
