@@ -6,7 +6,7 @@
 
   var tbBug766495 = {
     init: function() {
-      window.removeEventListener('load', this, false);
+      window.removeEventListener('DOMContentLoaded', this, false);
       window.addEventListener('unload', this, false);
       document.documentElement.addEventListener('compose-window-init', this, false);
       document.documentElement.addEventListener('compose-window-close', this, false);
@@ -23,7 +23,7 @@
 
     handleEvent: function(aEvent) {
       switch (aEvent.type) {
-      case 'load':
+      case 'DOMContentLoaded':
         this.init();
         return;
 
@@ -41,6 +41,6 @@
       }
     }
   };
-  window.addEventListener('load', tbBug766495, false);
+  window.addEventListener('DOMContentLoaded', tbBug766495, false);
   aGlobal.tbBug766495 = tbBug766495;
 })(this);
