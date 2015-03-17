@@ -12,7 +12,7 @@ var ComposeWindowGlobalConuter = {
     return this._counter || 0;
   },
   closed: function(aKey) {
-    return this._counter--;
+    this._counter--;
   },
   clear: function() {
     this._counter = 0;
