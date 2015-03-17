@@ -9,12 +9,10 @@
       window.removeEventListener('load', this, false);
       window.addEventListener('unload', this, false);
       window.addEventListener('select', this, true);
-      dump("init\n")
     },
     destroy: function() {
       window.removeEventListener('unload', this, false);
       window.removeEventListener('select', this, true);
-      dump("destroy\n")
     },
 
     handleEvent: function(aEvent) {
@@ -30,8 +28,5 @@
     }
   };
   window.addEventListener('load', tbBug766495, false);
-  document.addEventListener("DOMContentLoaded", function(aEvent) {
-    dump("poyo\n")
-  });
   aGlobal.tbBug766495 = tbBug766495;
 })(this);
