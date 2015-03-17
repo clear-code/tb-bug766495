@@ -8,9 +8,13 @@
     init: function() {
       window.removeEventListener('load', this, false);
       window.addEventListener('unload', this, false);
+      document.documentElement.addEventListener('compose-window-init', this, false);
+      document.documentElement.addEventListener('compose-window-close', this, false);
     },
     destroy: function() {
       window.removeEventListener('unload', this, false);
+      document.documentElement.removeEventListener('compose-window-init', this, false);
+      document.documentElement.removeEventListener('compose-window-close', this, false);
     },
 
     handleEvent: function(aEvent) {
