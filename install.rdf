@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="tb-bug766495@clear-code.com"
+                   em:name="tb-bug766495"
+                   em:version="0.1"
+                   em:description="Disable compacting folder when a editing mail or existing a draft mail. This add-on avoids https://bugzilla.mozilla.org/show_bug.cgi?id=766495."
+                   em:creator="ClearCode Inc."
+                   em:homepageURL="http://www.clear-code.com/">
+
+    <!--em:updateURL></em:updateURL-->
+    <!--em:updateKey></em:updateKey-->
+
+    <em:localized>
+      <RDF:Description em:locale="en-US"
+                       em:name="tb-bug766495"
+                       em:description="Disable compacting folder when a editing mail or existing a draft mail. This add-on avoids https://bugzilla.mozilla.org/show_bug.cgi?id=766495."
+                       em:creator="ClearCode Inc."
+                       em:homepageURL="http://www.clear-code.com/">
+      </RDF:Description>
+    </em:localized>
+
+    <em:localized>
+      <RDF:Description em:locale="ja"
+                       em:name="tb-bug766495"
+                       em:description="メッセージの作成中や下書きメールがある時に最適化を無効にします。このアドオンは https://bugzilla.mozilla.org/show_bug.cgi?id=766495 を回避します。"
+                       em:creator="ClearCode Inc."
+                       em:homepageURL="http://www.clear-code.com/">
+      </RDF:Description>
+    </em:localized>
+
+    <em:targetApplication>
+      <!-- Thunderbird -->
+      <RDF:Description em:id="{3550f703-e582-4d05-9a08-453d09bdfdc6}"
+                       em:minVersion="31.0"
+                       em:maxVersion="36.0a1" />
+    </em:targetApplication>
+  </RDF:Description>
+</RDF:RDF>
