@@ -21,13 +21,13 @@
       document.documentElement.removeEventListener('compose-window-init', this, false);
       document.documentElement.removeEventListener('compose-window-close', this, false);
     },
-    activateComposeWindow: function() {
+    onActivated: function() {
       oldPurgeAsk = prefs.getPref("mail.purge.ask");
       oldPurgeThresholdMB = prefs.getPref("mail.purge_threshhold_mb");
       prefs.setPref("mail.purge.ask", true);
       prefs.setPref("mail.purge_threshhold_mb", 1000 * 1000);
     },
-    deactivateComposeWindow: function() {
+    onDeactivated: function() {
       prefs.setPref("mail.purge.ask", oldPurgeAsk);
       prefs.setPref("mail.purge_threshhold_mb", oldPurgeThresholdMB);
     },
@@ -43,11 +43,11 @@
         return;
 
       case 'compose-window-init':
-        this.activateComposeWindow();
+        this.onActivated();
         break;
 
       case 'compose-window-close':
-        this.deactivateComposeWindow();
+        this.onDeactivated();
         break;
       }
     }
