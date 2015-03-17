@@ -1,3 +1,6 @@
 [submodule "buildscript"]
 	path = buildscript
 	url = https://github.com/piroor/makexpi.git
+[submodule "extlib/prefjs"]
+	path = extlib/prefjs
+	url = https://github.com/piroor/fxaddonlib-prefs
