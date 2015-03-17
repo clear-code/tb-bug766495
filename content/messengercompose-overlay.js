@@ -29,12 +29,19 @@
       oldPurgeThresholdMB = prefs.getPref("mail.purge_threshhold_mb");
       prefs.setPref("mail.purge.ask", true);
       prefs.setPref("mail.purge_threshhold_mb", 1000 * 1000);
+      ComposeWindowGlobalConuter.opened();
     },
     onDeactivated: function() {
-      prefs.setPref("mail.purge.ask", oldPurgeAsk);
-      prefs.setPref("mail.purge_threshhold_mb", oldPurgeThresholdMB);
+      ComposeWindowGlobalConuter.closed();
+      dump("ComposeWindow: " + ComposeWindowGlobalConuter.get() + "\n")
+      if (!this.isRemainingComposeWindow()) {
+        prefs.setPref("mail.purge.ask", oldPurgeAsk);
+        prefs.setPref("mail.purge_threshhold_mb", oldPurgeThresholdMB);
+      }
     },
-
+    isRemainingComposeWindow: function() {
+      return ComposeWindowGlobalConuter.get() > 0;
+    },
     handleEvent: function(aEvent) {
       switch (aEvent.type) {
       case 'DOMContentLoaded':

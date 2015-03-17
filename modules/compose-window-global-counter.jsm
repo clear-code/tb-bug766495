@@ -5,13 +5,14 @@
 var EXPORTED_SYMBOLS = ["ComposeWindowGlobalConuter"];
 
 var ComposeWindowGlobalConuter = {
+  _counter: 0,
   opened: function() {
     this._counter++;
   },
-  get: function(aKey) {
-    return this._counter || 0;
+  get: function() {
+    return this._counter;
   },
-  closed: function(aKey) {
+  closed: function() {
     this._counter--;
   },
   clear: function() {
