@@ -9,7 +9,7 @@
                                     "prefs",
                                     "resource://tb-bug766495-modules/lib/prefs.js");
   XPCOMUtils.defineLazyModuleGetter(this,
-                                    "ComposeWindowGlobalConuter",
+                                    "ComposeWindowGlobalCounter",
                                     "resource://tb-bug766495-modules/compose-window-global-counter.jsm");
   var oldPurgeAsk, oldPurgeThresholdMB;
   var tbBug766495 = {
@@ -23,7 +23,7 @@
       window.removeEventListener('unload', this, false);
       document.documentElement.removeEventListener('compose-window-init', this, false);
       document.documentElement.removeEventListener('compose-window-close', this, false);
-      ComposeWindowGlobalConuter.closed();
+      ComposeWindowGlobalCounter.closed();
       this.restorePref();
     },
     onActivated: function() {
@@ -31,14 +31,14 @@
       oldPurgeThresholdMB = prefs.getPref("mail.purge_threshhold_mb");
       prefs.setPref("mail.purge.ask", true);
       prefs.setPref("mail.purge_threshhold_mb", 1000 * 1000);
-      ComposeWindowGlobalConuter.opened();
+      ComposeWindowGlobalCounter.opened();
     },
     onDeactivated: function() {
-      ComposeWindowGlobalConuter.closed();
+      ComposeWindowGlobalCounter.closed();
       this.restorePref();
     },
     isRemainingComposeWindow: function() {
-      return ComposeWindowGlobalConuter.get() > 0;
+      return ComposeWindowGlobalCounter.get() > 0;
     },
     restorePref: function() {
       if (!this.isRemainingComposeWindow()) {

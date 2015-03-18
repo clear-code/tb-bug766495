@@ -2,9 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var EXPORTED_SYMBOLS = ["ComposeWindowGlobalConuter"];
+var EXPORTED_SYMBOLS = ["ComposeWindowGlobalCounter"];
 
-var ComposeWindowGlobalConuter = {
+var ComposeWindowGlobalCounter = {
   _counter: 0,
   opened: function() {
     this._counter++;
@@ -20,4 +20,4 @@ var ComposeWindowGlobalConuter = {
   }
 };
 
-ComposeWindowGlobalConuter.clear();
+ComposeWindowGlobalCounter.clear();
