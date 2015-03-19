@@ -10,7 +10,9 @@ XPCOMUtils.defineLazyModuleGetter(this,
                                   "prefs",
                                   "resource://tb-bug766495-modules/lib/prefs.js");
 
-var _oldPurgeAsk, _oldPurgeThresholdMB;
+const kPrefix = "extensions.tb-bug766495@clear-code.com.";
+const kAskPurge = "mail.purge.ask";
+const kPurgeThreshold = "mail.purge_threshhold_mb";
 var ComposeWindowGlobalCounter = {
   _counter: 0,
   opened: function() {
@@ -25,25 +27,28 @@ var ComposeWindowGlobalCounter = {
     this._counter = 0;
   },
   hasStoredPrefs: function() {
-    return !(_oldPurgeAsk === undefined && _oldPurgeThresholdMB === undefined);
+    return !(prefs.getPref(kPrefix + kAskPurge) === null
+             && prefs.getPref(kPrefix + kPurgeThreshold) === null);
   },
   deactivateAutoCompaction: function() {
     if (this.hasStoredPrefs() || this._counter <= 0)
       return;
 
-    _oldPurgeAsk = prefs.getPref("mail.purge.ask");
-    _oldPurgeThresholdMB = prefs.getPref("mail.purge_threshhold_mb");
-    prefs.setPref("mail.purge.ask", true);
-    prefs.setPref("mail.purge_threshhold_mb", 1000 * 1000);
+    var _oldPurgeAsk = prefs.getPref(kAskPurge);
+    var _oldPurgeThresholdMB = prefs.getPref(kPurgeThreshold);
+    prefs.setPref(kPrefix + kAskPurge, _oldPurgeAsk);
+    prefs.setPref(kPrefix + kPurgeThreshold, _oldPurgeThresholdMB);
+    prefs.setPref(kAskPurge, true);
+    prefs.setPref(kPurgeThreshold, 1000 * 1000);
   },
   activateAutoCompaction: function (){
     if (!this.hasStoredPrefs() || this._counter > 0)
       return;
 
-    prefs.setPref("mail.purge.ask", _oldPurgeAsk);
-    prefs.setPref("mail.purge_threshhold_mb", _oldPurgeThresholdMB);
-    _oldPurgeAsk = undefined;
-    _oldPurgeThresholdMB = undefined;
+    var _oldPurgeAsk = prefs.getPref(kPrefix + kAskPurge);
+    var _oldPurgeThresholdMB = prefs.getPref(kPrefix + kPurgeThreshold);
+    prefs.setPref(kAskPurge, _oldPurgeAsk);
+    prefs.setPref(kPurgeThreshold, _oldPurgeThresholdMB);
   }
 };
 
