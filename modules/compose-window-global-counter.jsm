@@ -18,28 +18,38 @@ var ComposeWindowGlobalCounter = {
   },
   opened: function() {
     this._counter++;
+    this.tryStoreOldPrefs();
   },
   get: function() {
     return this._counter;
   },
   closed: function() {
     this._counter--;
-    this.restoreOldPrefs();
+    this.tryRestoreOldPrefs();
   },
   clear: function() {
     this._counter = 0;
   },
-  storeOldPrefs: function() {
+  hasStoredPrefs: function() {
+    return !(_oldPurgeAsk === undefined && _oldPurgeThresholdMB === undefined);
+  },
+  tryStoreOldPrefs: function() {
+    if (this.hasStoredPrefs() || this._counter <= 0)
+      return;
+
     _oldPurgeAsk = prefs.getPref("mail.purge.ask");
     _oldPurgeThresholdMB = prefs.getPref("mail.purge_threshhold_mb");
     prefs.setPref("mail.purge.ask", true);
     prefs.setPref("mail.purge_threshhold_mb", 1000 * 1000);
   },
-  restoreOldPrefs: function (){
-    if (!this._counter > 0) {
-      prefs.setPref("mail.purge.ask", _oldPurgeAsk);
-      prefs.setPref("mail.purge_threshhold_mb", _oldPurgeThresholdMB);
-    }
+  tryRestoreOldPrefs: function (){
+    if (!this.hasStoredPrefs() || this._counter > 0)
+      return;
+
+    prefs.setPref("mail.purge.ask", _oldPurgeAsk);
+    prefs.setPref("mail.purge_threshhold_mb", _oldPurgeThresholdMB);
+    _oldPurgeAsk = undefined;
+    _oldPurgeThresholdMB = undefined;
   }
 };
 
