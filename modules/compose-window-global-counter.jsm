@@ -13,9 +13,6 @@ XPCOMUtils.defineLazyModuleGetter(this,
 var _oldPurgeAsk, _oldPurgeThresholdMB;
 var ComposeWindowGlobalCounter = {
   _counter: 0,
-  init: function() {
-    this.storeOldPrefs();
-  },
   opened: function() {
     this._counter++;
     this.tryStoreOldPrefs();

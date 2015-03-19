@@ -15,7 +15,6 @@
       window.addEventListener('unload', this, false);
       document.documentElement.addEventListener('compose-window-init', this, false);
       document.documentElement.addEventListener('compose-window-close', this, false);
-      ComposeWindowGlobalCounter.init();
     },
     destroy: function() {
       window.removeEventListener('unload', this, false);
