@@ -26,12 +26,12 @@ var ComposeWindowGlobalCounter = {
   clear: function() {
     this._counter = 0;
   },
-  hasStoredPrefs: function() {
+  existsBackupPrefs: function() {
     return !(prefs.getPref(kPrefix + kAskPurge) === null
              && prefs.getPref(kPrefix + kPurgeThreshold) === null);
   },
   deactivateAutoCompaction: function() {
-    if (this.hasStoredPrefs() || this._counter <= 0)
+    if (this.existsBackupPrefs() || this._counter <= 0)
       return;
 
     var _oldPurgeAsk = prefs.getPref(kAskPurge);
@@ -42,7 +42,7 @@ var ComposeWindowGlobalCounter = {
     prefs.setPref(kPurgeThreshold, 1000 * 1000);
   },
   activateAutoCompaction: function (){
-    if (!this.hasStoredPrefs() || this._counter > 0)
+    if (!this.existsBackupPrefs() || this._counter > 0)
       return;
 
     var _oldPurgeAsk = prefs.getPref(kPrefix + kAskPurge);
