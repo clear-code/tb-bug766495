@@ -31,7 +31,7 @@ var ComposeWindowGlobalCounter = {
   },
   storeOldPrefs: function() {
     _oldPurgeAsk = prefs.getPref("mail.purge.ask");
-    _oldPurgeThresholdMB =  prefs.getPref("mail.purge_threshhold_mb");
+    _oldPurgeThresholdMB = prefs.getPref("mail.purge_threshhold_mb");
     prefs.setPref("mail.purge.ask", true);
     prefs.setPref("mail.purge_threshhold_mb", 1000 * 1000);
   },
