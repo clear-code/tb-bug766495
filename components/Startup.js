@@ -9,8 +9,8 @@ const Cc = Components.classes;
 const Ci = Components.interfaces;
 Components.utils.import('resource://gre/modules/XPCOMUtils.jsm');
 XPCOMUtils.defineLazyModuleGetter(this,
-                                  "ComposeWindowGlobalCounter",
-                                  "resource://tb-bug766495-modules/compose-window-global-counter.jsm");
+                                  "ComposeWindowWatcher",
+                                  "resource://tb-bug766495-modules/compose-window-watcher.jsm");
 
 function tbBug766495StartupService() {}
 
@@ -19,7 +19,7 @@ tbBug766495StartupService.prototype = {
   contractID       : kID,
   classDescription : kNAME,
   observe : function(aSubject, aTopic, aData) {
-    ComposeWindowGlobalCounter.activateAutoCompaction();
+    ComposeWindowWatcher.activateAutoCompaction();
   },
   QueryInterface   : XPCOMUtils.generateQI([Ci.nsIObserver]),
 }

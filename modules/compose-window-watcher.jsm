@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var EXPORTED_SYMBOLS = ["ComposeWindowGlobalCounter"];
+var EXPORTED_SYMBOLS = ["ComposeWindowWatcher"];
 
 const Cu = Components.utils;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -13,7 +13,7 @@ XPCOMUtils.defineLazyModuleGetter(this,
 const kPrefix = "extensions.tb-bug766495@clear-code.com.";
 const kAskPurge = "mail.purge.ask";
 const kPurgeThreshold = "mail.purge_threshhold_mb";
-var ComposeWindowGlobalCounter = {
+var ComposeWindowWatcher = {
   _counter: 0,
   opened: function() {
     this._counter++;
@@ -54,4 +54,4 @@ var ComposeWindowGlobalCounter = {
   }
 };
 
-ComposeWindowGlobalCounter.clear();
+ComposeWindowWatcher.clear();

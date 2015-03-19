@@ -6,8 +6,8 @@
   const Cu = Components.utils;
   Cu.import("resource://gre/modules/XPCOMUtils.jsm");
   XPCOMUtils.defineLazyModuleGetter(this,
-                                    "ComposeWindowGlobalCounter",
-                                    "resource://tb-bug766495-modules/compose-window-global-counter.jsm");
+                                    "ComposeWindowWatcher",
+                                    "resource://tb-bug766495-modules/compose-window-watcher.jsm");
   var oldPurgeAsk, oldPurgeThresholdMB;
   var tbBug766495 = {
     init: function() {
@@ -20,13 +20,13 @@
       window.removeEventListener('unload', this, false);
       document.documentElement.removeEventListener('compose-window-init', this, false);
       document.documentElement.removeEventListener('compose-window-close', this, false);
-      ComposeWindowGlobalCounter.closed();
+      ComposeWindowWatcher.closed();
     },
     onActivated: function() {
-      ComposeWindowGlobalCounter.opened();
+      ComposeWindowWatcher.opened();
     },
     onDeactivated: function() {
-      ComposeWindowGlobalCounter.closed();
+      ComposeWindowWatcher.closed();
     },
     handleEvent: function(aEvent) {
       switch (aEvent.type) {
