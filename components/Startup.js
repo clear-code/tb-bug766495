@@ -8,6 +8,9 @@ const kNAME = 'tbBug766495StartupService';
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 Components.utils.import('resource://gre/modules/XPCOMUtils.jsm');
+XPCOMUtils.defineLazyModuleGetter(this,
+                                  "ComposeWindowGlobalCounter",
+                                  "resource://tb-bug766495-modules/compose-window-global-counter.jsm");
 
 function tbBug766495StartupService() {}
 
@@ -16,7 +19,7 @@ tbBug766495StartupService.prototype = {
   contractID       : kID,
   classDescription : kNAME,
   observe : function(aSubject, aTopic, aData) {
-
+    ComposeWindowGlobalCounter.activateAutoCompaction();
   },
   QueryInterface   : XPCOMUtils.generateQI([Ci.nsIObserver]),
 }
