@@ -49,6 +49,8 @@ var ComposeWindowGlobalCounter = {
     var _oldPurgeThresholdMB = prefs.getPref(kPrefix + kPurgeThreshold);
     prefs.setPref(kAskPurge, _oldPurgeAsk);
     prefs.setPref(kPurgeThreshold, _oldPurgeThresholdMB);
+    prefs.clearPref(kPrefix + kAskPurge);
+    prefs.clearPref(kPrefix + kPurgeThreshold);
   }
 };
 
