@@ -18,9 +18,6 @@ var ComposeWindowGlobalCounter = {
     this.tryStoreOldPrefs();
     this.disableAutoCompaction();
   },
-  get: function() {
-    return this._counter;
-  },
   closed: function() {
     this._counter--;
     this.tryRestoreOldPrefs();
