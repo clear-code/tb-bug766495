@@ -15,12 +15,11 @@ var ComposeWindowGlobalCounter = {
   _counter: 0,
   opened: function() {
     this._counter++;
-    this.tryStoreOldPrefs();
-    this.disableAutoCompaction();
+    this.deactivateAutoCompaction();
   },
   closed: function() {
     this._counter--;
-    this.tryRestoreOldPrefs();
+    this.activateAutoCompaction();
   },
   clear: function() {
     this._counter = 0;
@@ -28,18 +27,16 @@ var ComposeWindowGlobalCounter = {
   hasStoredPrefs: function() {
     return !(_oldPurgeAsk === undefined && _oldPurgeThresholdMB === undefined);
   },
-  tryStoreOldPrefs: function() {
+  deactivateAutoCompaction: function() {
     if (this.hasStoredPrefs() || this._counter <= 0)
       return;
 
     _oldPurgeAsk = prefs.getPref("mail.purge.ask");
     _oldPurgeThresholdMB = prefs.getPref("mail.purge_threshhold_mb");
-  },
-  disableAutoCompaction: function() {
     prefs.setPref("mail.purge.ask", true);
     prefs.setPref("mail.purge_threshhold_mb", 1000 * 1000);
   },
-  tryRestoreOldPrefs: function (){
+  activateAutoCompaction: function (){
     if (!this.hasStoredPrefs() || this._counter > 0)
       return;
 
