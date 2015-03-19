@@ -16,6 +16,7 @@ var ComposeWindowGlobalCounter = {
   opened: function() {
     this._counter++;
     this.tryStoreOldPrefs();
+    this.disableAutoCompaction();
   },
   get: function() {
     return this._counter;
@@ -36,6 +37,8 @@ var ComposeWindowGlobalCounter = {
 
     _oldPurgeAsk = prefs.getPref("mail.purge.ask");
     _oldPurgeThresholdMB = prefs.getPref("mail.purge_threshhold_mb");
+  },
+  disableAutoCompaction: function() {
     prefs.setPref("mail.purge.ask", true);
     prefs.setPref("mail.purge_threshhold_mb", 1000 * 1000);
   },
