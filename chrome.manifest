@@ -6,3 +6,7 @@ content	tb-bug766495	content/
 resource	tb-bug766495-modules	modules/
 
 overlay	chrome://messenger/content/messengercompose/messengercompose.xul	chrome://tb-bug766495/content/messengercompose-overlay.xul
+
+component	{B1223178-FCE2-4185-8E74-BE1DC67E1831}	components/Startup.js
+contract	@clear-code.com/tb-bug766495/startup;1	{B1223178-FCE2-4185-8E74-BE1DC67E1831}
+category	profile-after-change	tbBug766495StartupService	@clear-code.com/tb-bug766495/startup;1
