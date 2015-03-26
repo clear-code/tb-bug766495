@@ -22,7 +22,7 @@ var AutoCompactionController = {
       this.activateAutoCompaction();
     }
     else {
-      this.activateAutoCompaction();
+      this.deactivateAutoCompaction();
     }
   },
   composeWindowOpened: function() {
