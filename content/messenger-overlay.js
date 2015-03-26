@@ -5,7 +5,8 @@
 (function (aGlobal) {
   var Ci = Components.interfaces;
   var Cc = Components.classes;
-          //folder.getTotalMessages(true);
+  const Cu = Components.utils;
+  var { Promise } = Cu.import("resource://gre/modules/Promise.jsm", {});
 
   var tbBug766495 = {
     collectDraftFolders: function() {
