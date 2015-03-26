@@ -9,8 +9,8 @@
   var { Promise } = Cu.import("resource://gre/modules/Promise.jsm", {});
   Cu.import("resource://gre/modules/XPCOMUtils.jsm");
   XPCOMUtils.defineLazyModuleGetter(this,
-                                    "ComposeWindowWatcher",
-                                    "resource://tb-bug766495-modules/compose-window-watcher.jsm");
+                                    "AutoCompactionController",
+                                    "resource://tb-bug766495-modules/auto-compaction-controller.jsm");
 
   var tbBug766495 = {
     collectDraftFolders: function() {
@@ -73,7 +73,7 @@
       folders.forEach(function(folder) {
         draftMessagesCount += folder.getTotalMessages(true);
       });
-      ComposeWindowWatcher.setDraftCount(draftMessagesCount);
+      AutoCompactionController.setDraftCount(draftMessagesCount);
     });
   });
   aGlobal.tbBug766495 = tbBug766495;

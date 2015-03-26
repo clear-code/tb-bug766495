@@ -6,8 +6,8 @@
   const Cu = Components.utils;
   Cu.import("resource://gre/modules/XPCOMUtils.jsm");
   XPCOMUtils.defineLazyModuleGetter(this,
-                                    "ComposeWindowWatcher",
-                                    "resource://tb-bug766495-modules/compose-window-watcher.jsm");
+                                    "AutoCompactionController",
+                                    "resource://tb-bug766495-modules/auto-compaction-controller.jsm");
   var oldPurgeAsk, oldPurgeThresholdMB;
   var tbBug766495 = {
     init: function() {
@@ -20,13 +20,13 @@
       window.removeEventListener('unload', this, false);
       document.documentElement.removeEventListener('compose-window-init', this, false);
       document.documentElement.removeEventListener('compose-window-close', this, false);
-      ComposeWindowWatcher.closed();
+      AutoCompactionController.closed();
     },
     onActivated: function() {
-      ComposeWindowWatcher.opened();
+      AutoCompactionController.opened();
     },
     onDeactivated: function() {
-      ComposeWindowWatcher.closed();
+      AutoCompactionController.closed();
     },
     handleEvent: function(aEvent) {
       switch (aEvent.type) {

@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var EXPORTED_SYMBOLS = ["ComposeWindowWatcher"];
+var EXPORTED_SYMBOLS = ["AutoCompactionController"];
 
 const Cu = Components.utils;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -13,7 +13,7 @@ XPCOMUtils.defineLazyModuleGetter(this,
 const kPrefix = "extensions.tb-bug766495@clear-code.com.";
 const kAskPurge = "mail.purge.ask";
 const kPurgeThreshold = "mail.purge_threshhold_mb";
-var ComposeWindowWatcher = {
+var AutoCompactionController = {
   _counter: 0,
   _draftCount: 0,
   setDraftCount: function(count) {
@@ -70,4 +70,4 @@ var ComposeWindowWatcher = {
   }
 };
 
-ComposeWindowWatcher.clear();
+AutoCompactionController.clear();
