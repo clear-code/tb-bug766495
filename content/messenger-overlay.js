@@ -5,34 +5,35 @@
 (function (aGlobal) {
   var Ci = Components.interfaces;
   var Cc = Components.classes;
+          //folder.getTotalMessages(true);
 
   var tbBug766495 = {
     collectDraftFolders: function() {
       return new Promise((function(aResolve, aReject) {
-      var accountManager = MailServices.accounts;
-      var allServers = accountManager.allServers;
-      var folders = [];
-      var expectedFoldersCount = 0;
-      for (var i = 0,  maxi = allServers.length; i < maxi; ++i) {
-        let currentServer = allServers.queryElementAt(i, Ci.nsIMsgIncomingServer);
-        if (currentServer.type == "none")
-          continue;
+        var accountManager = MailServices.accounts;
+        var allServers = accountManager.allServers;
+        var folders = [];
+        var expectedFoldersCount = 0;
+        for (var i = 0,  maxi = allServers.length; i < maxi; ++i) {
+          let currentServer = allServers.queryElementAt(i, Ci.nsIMsgIncomingServer);
+          if (currentServer.type == "none")
+            continue;
 
-        var folderURI = currentServer.rootFolder.server.serverURI + "/" + "Drafts";
-        var rdf = Cc['@mozilla.org/rdf/rdf-service;1']
-                    .getService(Ci.nsIRDFService);
-        var folder = rdf.GetResource(folderURI).QueryInterface(Ci.nsIMsgFolder);
-        expectedFoldersCount++;
-        this.ensureUpdated(folder).then(function(folder) {
-          folders.push(folder);
-          if (folders.length >= expectedFoldersCount) {
-            aResolve(folders);
-          }
-        });
-      }
-      if (expectedFoldersCount == 0) {
-        aResolve(folders);
-      }
+          var folderURI = currentServer.rootFolder.server.serverURI + "/" + "Drafts";
+          var rdf = Cc['@mozilla.org/rdf/rdf-service;1']
+                .getService(Ci.nsIRDFService);
+          var folder = rdf.GetResource(folderURI).QueryInterface(Ci.nsIMsgFolder);
+          expectedFoldersCount++;
+          this.ensureUpdated(folder).then(function(folder) {
+            folders.push(folder);
+            if (folders.length >= expectedFoldersCount) {
+              aResolve(folders);
+            }
+          });
+        }
+        if (expectedFoldersCount == 0) {
+          aResolve(folders);
+        }
       }).bind(this));
     },
     ensureUpdated: function(aFolder) {
