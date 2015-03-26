@@ -41,7 +41,7 @@ var ComposeWindowWatcher = {
     prefs.setPref(kAskPurge, true);
     prefs.setPref(kPurgeThreshold, 1000 * 1000);
   },
-  activateAutoCompaction: function (){
+  activateAutoCompaction: function() {
     if (!this.existsBackupPrefs() || this._counter > 0)
       return;
 

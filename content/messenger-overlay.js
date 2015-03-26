@@ -40,7 +40,7 @@
     ensureUpdated: function(aFolder) {
       if (aFolder instanceof Ci.nsIMsgImapMailFolder) {
         return new Promise((function(aResolve, aReject) {
-          var listener = this.createURLListenerForFolder(function () {
+          var listener = this.createURLListenerForFolder(function() {
             aResolve(aFolder);
           });
           var imapDraftFolder = aFolder.QueryInterface(Ci.nsIMsgImapMailFolder);
