@@ -29,8 +29,8 @@
                 .getService(Ci.nsIRDFService);
           var folder = rdf.GetResource(folderURI).QueryInterface(Ci.nsIMsgFolder);
           expectedFoldersCount++;
-          this.ensureUpdated(folder).then(function(folder) {
-            folders.push(folder);
+          this.ensureUpdated(folder).then(function(aFolder) {
+            folders.push(aFolder);
             if (folders.length >= expectedFoldersCount) {
               aResolve(folders);
             }
@@ -80,10 +80,10 @@
 
   document.addEventListener("DOMContentLoaded", function onDOMContentLoaded(aEvent) {
     document.removeEventListener("DOMContentLoaded", onDOMContentLoaded);
-    tbBug766495.collectDraftFolders().then(function(folders) {
+    tbBug766495.collectDraftFolders().then(function(aFolders) {
       var draftMessagesCount = 0;
-      folders.forEach(function(folder) {
-        draftMessagesCount += folder.getTotalMessages(true);
+      aFolders.forEach(function(aFolder) {
+        draftMessagesCount += aFolder.getTotalMessages(true);
       });
       AutoCompactionController.setDraftCount(draftMessagesCount);
     });
