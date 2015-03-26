@@ -7,7 +7,7 @@
   var Cc = Components.classes;
 
   var tbBug766495 = {
-    collectAccounts: function() {
+    collectDraftFolders: function() {
       var accountManager = MailServices.accounts;
       var allServers = accountManager.allServers;
       for (var i = 0,  maxi = allServers.length; i < maxi; ++i) {
@@ -22,7 +22,7 @@
 
   document.addEventListener("DOMContentLoaded", function onDOMContentLoaded(aEvent) {
     document.removeEventListener("DOMContentLoaded", onDOMContentLoaded);
-    tbBug766495.collectAccounts();
+    tbBug766495.collectDraftFolders();
   });
   aGlobal.tbBug766495 = tbBug766495;
 })(this);
