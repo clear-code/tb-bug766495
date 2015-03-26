@@ -63,6 +63,18 @@
           aCallBack();
         },
       };
+    },
+    get folderMessageActions()
+    {
+      return Ci.nsIMsgFolderNotificationService.msgAdded |
+             Ci.nsIMsgFolderNotificationService.msgDeleted;
+    },
+    // nsIMsgFolderListener
+    createLisnerForDraftFolder: function  createLisnerForDraftFolder() {
+      return {
+        msgAdded: function msgAdded(aFolder) {},
+        msgsDeleted: function msgsDeleted(aFolder) {},
+      };
     }
   };
 
