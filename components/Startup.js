@@ -22,6 +22,6 @@ tbBug766495StartupService.prototype = {
     AutoCompactionController.activateAutoCompaction();
   },
   QueryInterface   : XPCOMUtils.generateQI([Ci.nsIObserver]),
-}
+};
 
 var NSGetFactory = XPCOMUtils.generateNSGetFactory([tbBug766495StartupService]);
