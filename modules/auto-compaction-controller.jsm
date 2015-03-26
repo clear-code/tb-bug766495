@@ -16,9 +16,9 @@ const kPurgeThreshold = "mail.purge_threshhold_mb";
 var AutoCompactionController = {
   _counter: 0,
   _draftCount: 0,
-  setDraftCount: function(count) {
-    this._draftCount = count;
-    if (count <= 0) {
+  setDraftCount: function(aCount) {
+    this._draftCount = aCount;
+    if (aCount <= 0) {
       this.activateAutoCompaction();
     }
     else {
