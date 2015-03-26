@@ -17,6 +17,18 @@
 
         var folderURI = currentServer.rootFolder.server.serverURI + "/" + "Drafts";
       }
+    },
+    // nsIUrlListener
+    createURLListenerForFolder: function createURLListenerForFolder() {
+      return {
+        OnStartRunningUrl: function OnStartRunningUrl(aURL) {
+        },
+        OnStopRunningUrl: function OnStopRunningUrl(aURL, aExitCode) {
+          this.finished = true;
+        },
+        folder: aFolder,
+        finished: false,
+      };
     }
   };
 
