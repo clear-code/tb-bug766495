@@ -64,7 +64,12 @@
 
   document.addEventListener("DOMContentLoaded", function onDOMContentLoaded(aEvent) {
     document.removeEventListener("DOMContentLoaded", onDOMContentLoaded);
-    tbBug766495.collectDraftFolders();
+    tbBug766495.collectDraftFolders().then(function(folders) {
+      var draftMessagesCount = 0;
+      folders.forEach(function(folder) {
+        draftMessagesCount += folder.getTotalMessages(true);
+      });
+    });
   });
   aGlobal.tbBug766495 = tbBug766495;
 })(this);
