@@ -25,11 +25,11 @@ var AutoCompactionController = {
       this.activateAutoCompaction();
     }
   },
-  opened: function() {
+  composeWindowOpened: function() {
     this._counter++;
     this.deactivateAutoCompaction();
   },
-  closed: function() {
+  composeWindowClosed: function() {
     this._counter--;
     this.activateAutoCompaction();
   },

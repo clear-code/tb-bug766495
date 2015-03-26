@@ -20,13 +20,13 @@
       window.removeEventListener('unload', this, false);
       document.documentElement.removeEventListener('compose-window-init', this, false);
       document.documentElement.removeEventListener('compose-window-close', this, false);
-      AutoCompactionController.closed();
+      AutoCompactionController.composeWindowClosed();
     },
     onActivated: function() {
-      AutoCompactionController.opened();
+      AutoCompactionController.composeWindowOpened();
     },
     onDeactivated: function() {
-      AutoCompactionController.closed();
+      AutoCompactionController.composeWindowClosed();
     },
     handleEvent: function(aEvent) {
       switch (aEvent.type) {
