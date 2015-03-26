@@ -14,7 +14,7 @@ const kPrefix = "extensions.tb-bug766495@clear-code.com.";
 const kAskPurge = "mail.purge.ask";
 const kPurgeThreshold = "mail.purge_threshhold_mb";
 var AutoCompactionController = {
-  _counter: 0,
+  _composeWindowCount: 0,
   _draftCount: 0,
   setDraftCount: function(aCount) {
     this._draftCount = aCount;
@@ -26,15 +26,15 @@ var AutoCompactionController = {
     }
   },
   composeWindowOpened: function() {
-    this._counter++;
+    this._composeWindowCount++;
     this.deactivateAutoCompaction();
   },
   composeWindowClosed: function() {
-    this._counter--;
+    this._composeWindowCount--;
     this.activateAutoCompaction();
   },
   clear: function() {
-    this._counter = 0;
+    this._composeWindowCount = 0;
   },
   existsBackupPrefs: function() {
     return !(prefs.getPref(kPrefix + kAskPurge) === null
@@ -44,7 +44,7 @@ var AutoCompactionController = {
     if (this.existsBackupPrefs())
       return;
 
-    if (this._draftCount <= 0 && this._counter <= 0)
+    if (this._draftCount <= 0 && this._composeWindowCount <= 0)
       return;
 
     var _oldPurgeAsk = prefs.getPref(kAskPurge);
@@ -58,7 +58,7 @@ var AutoCompactionController = {
     if (!this.existsBackupPrefs())
       return;
 
-    if (this._draftCount > 0 || this._counter > 0)
+    if (this._draftCount > 0 || this._composeWindowCount > 0)
       return;
 
     var _oldPurgeAsk = prefs.getPref(kPrefix + kAskPurge);
