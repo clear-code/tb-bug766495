@@ -16,6 +16,14 @@
           continue;
 
         var folderURI = currentServer.rootFolder.server.serverURI + "/" + "Drafts";
+        var rdf = Cc['@mozilla.org/rdf/rdf-service;1']
+                    .getService(Ci.nsIRDFService);
+        var folder = rdf.GetResource(folderURI).QueryInterface(Ci.nsIMsgFolder);
+        if (currentServer.type == "pop3")
+
+        if (currentServer.type == "imap") {
+          var imapDraftFolder = folder.QueryInterface(Ci.nsIMsgImapMailFolder);
+        }
       }
     },
     // nsIUrlListener
