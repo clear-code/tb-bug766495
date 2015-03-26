@@ -35,6 +35,7 @@ var AutoCompactionController = {
   },
   clear: function() {
     this._composeWindowCount = 0;
+    this._draftCount = 0;
   },
   existsBackupPrefs: function() {
     return !(prefs.getPref(kPrefix + kAskPurge) === null
