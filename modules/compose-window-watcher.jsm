@@ -15,6 +15,16 @@ const kAskPurge = "mail.purge.ask";
 const kPurgeThreshold = "mail.purge_threshhold_mb";
 var ComposeWindowWatcher = {
   _counter: 0,
+  _draftCount: 0,
+  setDraftCount: function(count) {
+    this._draftCount = count;
+    if (count <= 0) {
+      this.activateAutoCompaction();
+    }
+    else {
+      this.activateAutoCompaction();
+    }
+  },
   opened: function() {
     this._counter++;
     this.deactivateAutoCompaction();
@@ -31,7 +41,10 @@ var ComposeWindowWatcher = {
              && prefs.getPref(kPrefix + kPurgeThreshold) === null);
   },
   deactivateAutoCompaction: function() {
-    if (this.existsBackupPrefs() || this._counter <= 0)
+    if (this.existsBackupPrefs())
+      return;
+
+    if (this._draftCount <= 0 && this._counter <= 0)
       return;
 
     var _oldPurgeAsk = prefs.getPref(kAskPurge);
@@ -42,7 +55,10 @@ var ComposeWindowWatcher = {
     prefs.setPref(kPurgeThreshold, 1000 * 1000);
   },
   activateAutoCompaction: function() {
-    if (!this.existsBackupPrefs() || this._counter > 0)
+    if (!this.existsBackupPrefs())
+      return;
+
+    if (this._draftCount > 0 || this._counter > 0)
       return;
 
     var _oldPurgeAsk = prefs.getPref(kPrefix + kAskPurge);
