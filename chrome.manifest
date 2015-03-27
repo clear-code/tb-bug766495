@@ -9,7 +9,7 @@ overlay	chrome://messenger/content/messengercompose/messengercompose.xul	chrome:
 
 # TODO:
 # For now, following startup module is unused and temporary disabled.
-# It is to be desired to check a existence for draft messages at startup.
+# It is to be desired to check the existence for the number of draft messages at startup.
 # component	{B1223178-FCE2-4185-8E74-BE1DC67E1831}	components/Startup.js
 # contract	@clear-code.com/tb-bug766495/startup;1	{B1223178-FCE2-4185-8E74-BE1DC67E1831}
 # category	profile-after-change	tbBug766495StartupService	@clear-code.com/tb-bug766495/startup;1
